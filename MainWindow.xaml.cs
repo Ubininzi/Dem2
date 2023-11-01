@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Data;
+using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,7 @@ namespace WpfApp3
         public MainWindow()
         {
             InitializeComponent();
+            ProductPanel.Children.Add(new Product("sss", "name", 15));
         }
     }
 }
