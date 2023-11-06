@@ -1,17 +1,32 @@
 ﻿<UserControl x:Class="WpfApp3.BasketProductVisual"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:WpfApp3"
-             mc:Ignorable="d" 
-             d:DesignHeight="100" d:DesignWidth="800" BorderBrush="Black" BorderThickness="1" Background="White">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1.5*"/><!--картинка-->
-            <ColumnDefinition Width="1.5*"/><!--название-->
-            <ColumnDefinition Width="1*"/><!--колво-->
-        </Grid.ColumnDefinitions>
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:local="clr-namespace:WpfApp3"
+			 mc:Ignorable="d" 
+			 d:DesignHeight="100" d:DesignWidth="800" BorderBrush="Black" BorderThickness="1" Background="White">
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="1.5*"/><!--картинка-->
+			<ColumnDefinition Width="1.5*"/><!--название-->
+			<ColumnDefinition Width="1*"/><!--колво-->
+			<ColumnDefinition Width="1*"/><!--стоимость( + цена за штуку)-->
+		</Grid.ColumnDefinitions>
+		<Image x:Name="BasketProductImage" Grid.Column="0" Margin="5 5 5 5"/>
+		<Label x:Name="BasketProductNameLabel" Grid.Column="1" Margin="5 5 5 5"/>
+		<Grid Grid.Column="2" Margin="20" Height="50">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.2*"/>
+                <ColumnDefinition Width="0.4*"/>
+                <ColumnDefinition Width="0.2*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="ProductCountUpButton" Content="+" Grid.Column="2" Margin="1 1 1 1" Click="ProductCountUpButton_Click"/>
+            <Button x:Name="ProductCountDownButton" Content="-" Grid.Column="0" Margin="1 1 1 1" Click="ProductCountDownButton_Click"/>
+            <TextBox x:Name="ProductCountTextBox" Grid.Column="1" Margin="1 1 1 1" LostFocus="ProductCountTextBox_LostFocus"/>
+        </Grid>
+		<Label x:Name="BasketProductPriceLabel" Grid.Column="3" Margin="5 5 5 5"/>
 
-    </Grid>
+
+	</Grid>
 </UserControl>

@@ -13,6 +13,8 @@ public partial class Product
 
     public decimal? Price { get; set; }
 
+    public int? Stock { get; set; }
+
     public string? Desciption { get; set; }
 
     public string? PathToImage { get; set; }

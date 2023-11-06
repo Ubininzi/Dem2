@@ -1,31 +1,38 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace WpfApp3
 {
 	public partial class ProductVisual : UserControl
 	{
-		private int ProductId;
+		Product ThisProduct;
 		private MainWindow EvokingWindow;
-		public ProductVisual(MainWindow MainWindow,int productId ,string ProductName,decimal? ProductPrice,string PathToImage)
+		public ProductVisual(MainWindow MainWindow, int productId)
 		{
 			InitializeComponent();
-			ProductId = productId;
+			BookShopContext dbCont = new BookShopContext();
+			ThisProduct = dbCont.Products.Find(productId);
 			EvokingWindow = MainWindow;
-			ProductImage.Source = new BitmapImage(new Uri(PathToImage, UriKind.RelativeOrAbsolute));
-            ProductNameLabel.Content = ProductName;
-            ProductPriceLabel.Content = ProductPrice;
-        }
+			ProductImage.Source = new BitmapImage(new Uri(ThisProduct.PathToImage, UriKind.RelativeOrAbsolute));
+			ProductNameLabel.Content = ThisProduct.Name;
+			ProductPriceLabel.Content = ThisProduct.Price;
+			if (ThisProduct.Stock < 1)
+			{
+				ProductAddButton.IsEnabled = false;
+				this.Background = Brushes.Gray;
+			}
+		}
 
 		private void ProductAddButton_Click(object sender, RoutedEventArgs e)
 		{
-			if (EvokingWindow.Basket.ContainsKey(ProductId))
-				EvokingWindow.Basket[ProductId] += 1;
-			else EvokingWindow.Basket.Add(ProductId, 1);
-            //BasketWindow.Update();
-            EvokingWindow.TurnOnBasketButtton();
+			if (EvokingWindow.Basket.ContainsKey(ThisProduct.Id))
+				EvokingWindow.Basket[ThisProduct.Id] += 1;
+			else EvokingWindow.Basket.Add(ThisProduct.Id, 1);
+			BasketWindow.UpdateBasket();
+			EvokingWindow.TurnOnBasketButton();
 			MessageBox.Show("Товар успешно добавлен!");
 		}
 	}
