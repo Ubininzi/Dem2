@@ -15,7 +15,7 @@ namespace WpfApp3
 			InitializeComponent();
 			BookShopContext dbCont = new BookShopContext();
 			foreach (var item in dbCont.Products)
-				ProductPanel.Children.Add(new ProductVisual(this, item.Id));
+				ProductPanel.Children.Add(new ProductVisual(this, item.Id,false));
 
 		}
 		public void TurnOnBasketButton() { 

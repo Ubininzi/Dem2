@@ -8,9 +8,9 @@ namespace WpfApp3
 {
 	public partial class ProductVisual : UserControl
 	{
-		Product ThisProduct;
+		private Product ThisProduct;
 		private MainWindow EvokingWindow;
-		public ProductVisual(MainWindow MainWindow, int productId)
+		public ProductVisual(MainWindow MainWindow, int productId,bool admined)
 		{
 			InitializeComponent();
 			BookShopContext dbCont = new BookShopContext();
@@ -19,6 +19,11 @@ namespace WpfApp3
 			ProductImage.Source = new BitmapImage(new Uri(ThisProduct.PathToImage, UriKind.RelativeOrAbsolute));
 			ProductNameLabel.Content = ThisProduct.Name;
 			ProductPriceLabel.Content = ThisProduct.Price;
+			if (admined) {
+				ColumnDefinition col = new ColumnDefinition();
+				col.Width = new GridLength(0.5, GridUnitType.Star);
+				MainGrid.ColumnDefinitions.Add(col);
+			}
 			if (ThisProduct.Stock < 1)
 			{
 				ProductAddButton.IsEnabled = false;
@@ -35,5 +40,8 @@ namespace WpfApp3
 			EvokingWindow.TurnOnBasketButton();
 			MessageBox.Show("Товар успешно добавлен!");
 		}
-	}
+        private void ProductDeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+        }
+    }
 }
