@@ -23,6 +23,7 @@ namespace WpfApp3
 				ColumnDefinition col = new ColumnDefinition();
 				col.Width = new GridLength(0.5, GridUnitType.Star);
 				MainGrid.ColumnDefinitions.Add(col);
+				ProductDeleteButton.IsEnabled = true;
 			}
 			if (ThisProduct.Stock < 1)
 			{
@@ -42,6 +43,11 @@ namespace WpfApp3
 		}
         private void ProductDeleteButton_Click(object sender, RoutedEventArgs e)
         {
+			BookShopContext db = new BookShopContext();
+			db.Products.Remove(ThisProduct);
+			db.SaveChanges();
+			EvokingWindow.ProductPanel.Children.Remove(this);
+			//EvokingWindow.UpdateProductsList();
         }
     }
 }
