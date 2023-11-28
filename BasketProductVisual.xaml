@@ -12,21 +12,34 @@
 			<ColumnDefinition Width="1.5*"/><!--название-->
 			<ColumnDefinition Width="1*"/><!--колво-->
 			<ColumnDefinition Width="1*"/><!--стоимость( + цена за штуку)-->
+			<ColumnDefinition Width="1*"/><!--кнопка удаления-->
 		</Grid.ColumnDefinitions>
 		<Image x:Name="BasketProductImage" Grid.Column="0" Margin="5 5 5 5"/>
 		<Label x:Name="BasketProductNameLabel" Grid.Column="1" Margin="5 5 5 5"/>
 		<Grid Grid.Column="2" Margin="20" Height="50">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.2*"/>
-                <ColumnDefinition Width="0.4*"/>
-                <ColumnDefinition Width="0.2*"/>
-            </Grid.ColumnDefinitions>
-            <Button x:Name="ProductCountUpButton" Content="+" Grid.Column="2" Margin="1 1 1 1" Click="ProductCountUpButton_Click"/>
-            <Button x:Name="ProductCountDownButton" Content="-" Grid.Column="0" Margin="1 1 1 1" Click="ProductCountDownButton_Click"/>
-            <TextBox x:Name="ProductCountTextBox" Grid.Column="1" Margin="1 1 1 1" LostFocus="ProductCountTextBox_LostFocus"/>
-        </Grid>
-		<Label x:Name="BasketProductPriceLabel" Grid.Column="3" Margin="5 5 5 5"/>
-
-
-	</Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="0.2*"/>
+				<ColumnDefinition Width="0.4*"/>
+				<ColumnDefinition Width="0.2*"/>
+			</Grid.ColumnDefinitions>
+			<Button x:Name="ProductCountUpButton" Content="+" Grid.Column="2" Margin="1 1 1 1" Click="ProductCountUpButton_Click"/>
+			<Button x:Name="ProductCountDownButton" Content="-" Grid.Column="0" Margin="1 1 1 1" Click="ProductCountDownButton_Click"/>
+			<TextBox x:Name="ProductCountTextBox" Grid.Column="1" Margin="1 1 1 1" IsEnabled="False"  />
+		</Grid>
+        <Grid Grid.Column="3" Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+		   <Label Grid.Row="0" x:Name="BasketProductSumLabel" Grid.Column="3"/>
+		   <Label Grid.Row="1" x:Name="BasketProductPriceLabel" Grid.Column="3"/>
+		   <Label Grid.Row="2" x:Name="BasketProductDiscountLabel" Grid.Column="3"/>
+            
+			
+			
+			
+		</Grid>
+        <Button x:Name="DeleteProductButton" Click="DeleteProductButton_Click" Margin="5" Grid.Column="4" Content="Delete"/>
+    </Grid>
 </UserControl>

@@ -22,16 +22,16 @@ public partial class BookShopContext : DbContext
     public virtual DbSet<Role> Roles { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //Scaffold-DbContext "Server=DESKTOP-Q8117JT\MSSQLSERVER2022;Database=BookShop;Trusted_Connection=True;TrustServerCertificate=True" Microsoft.EntityFrameworkCore.SqlServer
-        //https://metanit.com/sharp/entityframeworkcore/1.3.php
-        //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=DESKTOP-Q8117JT\\MSSQLSERVER2022;Database=BookShop;Trusted_Connection=True;TrustServerCertificate=True");
+        //Scaffold-DbContext "Server=kyserv;Database=BookShop;Trusted_Connection=True;TrustServerCertificate=True" Microsoft.EntityFrameworkCore.SqlServer
+        //
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Server=kyserv;Database=BookShop;Trusted_Connection=True;TrustServerCertificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Login>(entity =>
         {
-            entity.HasKey(e => e.Login1).HasName("PK__LOGINS__7E4158FC26CE82FC");
+            entity.HasKey(e => e.Login1).HasName("PK__LOGINS__7E4158FC300CFA11");
 
             entity.ToTable("LOGINS");
 
@@ -46,12 +46,12 @@ public partial class BookShopContext : DbContext
             entity.HasOne(d => d.RoleNavigation).WithMany(p => p.Logins)
                 .HasForeignKey(d => d.Role)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__LOGINS__ROLE___3B75D760");
+                .HasConstraintName("FK__LOGINS__ROLE___286302EC");
         });
 
         modelBuilder.Entity<Product>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__PRODUCT__3214EC2755904DFB");
+            entity.HasKey(e => e.Id).HasName("PK__PRODUCT__3214EC2722E9C90E");
 
             entity.ToTable("PRODUCT");
 
@@ -67,7 +67,7 @@ public partial class BookShopContext : DbContext
 
         modelBuilder.Entity<Role>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__ROLES__3214EC2752BA9C98");
+            entity.HasKey(e => e.Id).HasName("PK__ROLES__3214EC273D20360F");
 
             entity.ToTable("ROLES");
 

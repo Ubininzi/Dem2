@@ -10,6 +10,7 @@ CREATE TABLE PRODUCT(
 	Name_ NVARCHAR(50) NOT NULL,
 	Author NVARCHAR(50) NOT NULL,
 	Price MONEY,
+	Discount FLOAT,
 	Stock INT,
 	Desciption NVARCHAR(100),
 	PathToImage NVARCHAR(100),

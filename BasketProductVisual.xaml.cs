@@ -16,9 +16,13 @@ namespace WpfApp3
 			BookShopContext dbCont = new BookShopContext();
 			ThisProduct = dbCont.Products.Find(productId);
 			EvokingWindow = BasketWindow;
-			BasketProductImage.Source = new BitmapImage(new Uri(ThisProduct.PathToImage, UriKind.RelativeOrAbsolute));
+			if (ThisProduct.PathToImage != null) {
+				BasketProductImage.Source = new BitmapImage(new Uri(ThisProduct.PathToImage, UriKind.RelativeOrAbsolute));
+			}
 			BasketProductNameLabel.Content = ThisProduct.Name;
-			BasketProductPriceLabel.Content = ThisProduct.Price * quantity;
+			BasketProductSumLabel.Content = new string($"{ThisProduct.Price * quantity * (1-(Decimal)ThisProduct.Discount) }");
+			BasketProductPriceLabel.Content = new string($"{ThisProduct.Price} за ед.");
+			BasketProductDiscountLabel.Content = new string($"Скидка {ThisProduct.Discount * 100}%");
 			ProductCountTextBox.Text = quantity.ToString();
 			Quantity = quantity;
 		}
@@ -26,27 +30,41 @@ namespace WpfApp3
 		private void ProductCountUpButton_Click(object sender, RoutedEventArgs e)
 		{
 			Quantity++;
+			EvokingWindow.Basket[ThisProduct.Id]++;
+            EvokingWindow.RefreshBasket();
 			UpdatePrice();
-		}
+        }
 
-		private void ProductCountDownButton_Click(object sender, RoutedEventArgs e)
+        private void ProductCountDownButton_Click(object sender, RoutedEventArgs e)
 		{
 			Quantity--;
+            EvokingWindow.Basket[ThisProduct.Id]--;
+            EvokingWindow.RefreshBasket();
 			UpdatePrice();
-			if (Quantity <= 0) EvokingWindow.Basket.Remove(ThisProduct.Id);
-			BasketWindow.UpdateBasket();
-		}
-		private void UpdatePrice() {
+        }
+        private void UpdatePrice() {
 			BasketProductPriceLabel.Content = ThisProduct.Price * Quantity;
 			ProductCountTextBox.Text = Quantity.ToString();
-		}
+ 		}
 		private void ProductCountTextBox_LostFocus(object sender, RoutedEventArgs e)
 		{
-			BasketWindow.UpdateBasket();
 			Quantity = Convert.ToInt32(ProductCountTextBox.Text);
-			if (Quantity <= 0)
-				EvokingWindow.Basket.Remove(ThisProduct.Id);
 			UpdatePrice();
+			EvokingWindow.RefreshBasket();
 		}
-	}
+
+        private void DeleteProductButton_Click(object sender, RoutedEventArgs e)
+        {
+            EvokingWindow.Basket.Remove(ThisProduct.Id);
+            UpdatePrice();
+            EvokingWindow.RefreshBasket();
+        }
+
+        private void ProductCountTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Quantity = Convert.ToInt32(ProductCountTextBox.Text);
+            UpdatePrice();
+            EvokingWindow.RefreshBasket();
+        }
+    }
 }

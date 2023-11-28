@@ -13,6 +13,8 @@ public partial class Product
 
     public decimal? Price { get; set; }
 
+    public double? Discount { get; set; }
+
     public int? Stock { get; set; }
 
     public string? Desciption { get; set; }
