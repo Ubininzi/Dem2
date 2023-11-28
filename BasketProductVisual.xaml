@@ -34,12 +34,8 @@
             </Grid.RowDefinitions>
 		   <Label Grid.Row="0" x:Name="BasketProductSumLabel" Grid.Column="3"/>
 		   <Label Grid.Row="1" x:Name="BasketProductPriceLabel" Grid.Column="3"/>
-		   <Label Grid.Row="2" x:Name="BasketProductDiscountLabel" Grid.Column="3"/>
-            
-			
-			
-			
-		</Grid>
+            <Label Grid.Row="2" x:Name="BasketProductDiscountLabel" Grid.Column="3"/>
+        </Grid>
         <Button x:Name="DeleteProductButton" Click="DeleteProductButton_Click" Margin="5" Grid.Column="4" Content="Delete"/>
     </Grid>
 </UserControl>

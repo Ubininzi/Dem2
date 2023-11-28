@@ -46,12 +46,6 @@ namespace WpfApp3
 			BasketProductPriceLabel.Content = ThisProduct.Price * Quantity;
 			ProductCountTextBox.Text = Quantity.ToString();
  		}
-		private void ProductCountTextBox_LostFocus(object sender, RoutedEventArgs e)
-		{
-			Quantity = Convert.ToInt32(ProductCountTextBox.Text);
-			UpdatePrice();
-			EvokingWindow.RefreshBasket();
-		}
 
         private void DeleteProductButton_Click(object sender, RoutedEventArgs e)
         {

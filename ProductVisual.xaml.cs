@@ -47,7 +47,6 @@ namespace WpfApp3
 			db.Products.Remove(ThisProduct);
 			db.SaveChanges();
 			EvokingWindow.ProductPanel.Children.Remove(this);
-			//EvokingWindow.UpdateProductsList();
         }
     }
 }
