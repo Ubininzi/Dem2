@@ -10,6 +10,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="0.2*" />
             <RowDefinition Height="1*" />
+            <RowDefinition Height="0.2*" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
@@ -29,5 +30,6 @@
             <StackPanel x:Name="BasketProductPanel">
             </StackPanel>
         </ScrollViewer>
+        <Button Grid.Row="2" Content="Сделать заказ" Click="BasketOrder_Click"></Button>
     </Grid>
 </Window>

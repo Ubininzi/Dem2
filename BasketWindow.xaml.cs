@@ -53,5 +53,23 @@ namespace WpfApp3
 			EvokingWindow.TurnOnBasketButton();
 		}
 
-	}
+        private void BasketOrder_Click(object sender, RoutedEventArgs e)
+        {
+			//добавить логику
+			BookShopContext db = new BookShopContext();
+			string str = "";
+			if (Basket.Any())
+			{
+				foreach (var item in Basket)
+				{
+					str += item.Key + "-" + item.Value + ",";
+				}
+
+				db.Orders.Add(new Order { IdUserNavigation = db.Logins.First(), Names = str });
+				db.SaveChanges();
+			}
+			
+			
+        }
+    }
 }
