@@ -33,7 +33,9 @@ CREATE TABLE ORDERS(
 
 INSERT PRODUCT
 VALUES	('1984','ORWELL',2000,0.1,50,'ABOBA','D:\Users\ST307-07\Downloads\Among Us - Раскраска - 1.png'),
-		('HarryPotter','Rowling',1984,0.15,1000,'ABO','D:\Users\ST307-07\Downloads\Among Us - Раскраска - 1.png')
+		('HarryPotter','Rowling',1984,0.15,1000,'ABO','D:\Users\ST307-07\Downloads\Among Us - Раскраска - 1.png'),
+		('HarryPotter','Rowling',1812,0.15,1000,'ABO','D:\Users\ST307-07\Downloads\Among Us - Раскраска - 1.png'),
+		('HarryPotter','Rowling',19991,0.15,1000,'ABO','D:\Users\ST307-07\Downloads\Among Us - Раскраска - 1.png')
 INSERT ROLES
 VALUES ('USER'),('MANAGER'),('ADMIN')
 

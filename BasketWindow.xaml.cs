@@ -7,7 +7,7 @@ namespace WpfApp3
 {
 	public partial class BasketWindow : Window
 	{
-		public MainWindow EvokingWindow;
+		private MainWindow EvokingWindow;
 		public Dictionary<int, int> Basket = new();
 		private int Sum = 0;
 		private int Discount = 0;
@@ -18,7 +18,6 @@ namespace WpfApp3
 			EvokingWindow = evokingWindow;
 			Basket = basket;
 			CreateBasket();
-
 		}
 
 		public static void UpdateBasket()
@@ -55,21 +54,17 @@ namespace WpfApp3
 
         private void BasketOrder_Click(object sender, RoutedEventArgs e)
         {
-			//добавить логику
 			BookShopContext db = new BookShopContext();
-			string str = "";
-			if (Basket.Any())
+			List<string> items = new List<string>();	
+			if (Basket.Any() && EvokingWindow.IsAuth)
 			{
 				foreach (var item in Basket)
 				{
-					str += item.Key + "-" + item.Value + ",";
+					items.Add(new string(item.Key + "-" + item.Value));
 				}
-
-				db.Orders.Add(new Order { IdUserNavigation = db.Logins.First(), Names = str });
+				db.Orders.Add(new Order { IdUser = EvokingWindow.authLogin.Login1, Names = string.Join(',',items) });
 				db.SaveChanges();
 			}
-			
-			
         }
     }
 }
