@@ -55,17 +55,15 @@ namespace WpfApp3
 
         private void BasketOrder_Click(object sender, RoutedEventArgs e)
         {
-			//добавить логику
 			BookShopContext db = new BookShopContext();
-			string str = "";
-			if (Basket.Any())
+			List<string> items = new List<string>();	
+			if (Basket.Any() && EvokingWindow.IsAuth)
 			{
 				foreach (var item in Basket)
 				{
-					str += item.Key + "-" + item.Value + ",";
+					items.Add(new string(item.Key + "-" + item.Value));
 				}
-
-				db.Orders.Add(new Order { IdUserNavigation = db.Logins.First(), Names = str });
+				db.Orders.Add(new Order { IdUser = EvokingWindow.authLogin.Login1, Names = string.Join(',',items) });
 				db.SaveChanges();
 			}
 			

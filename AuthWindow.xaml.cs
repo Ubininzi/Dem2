@@ -30,15 +30,15 @@ namespace WpfApp3
             if (auth && log.Role == db.Roles.First(x => x.Rolename == "ADMIN").Id) {
                 admined = true;
             }
-            EvokingWindow.IsAdmined = admined;
-            EvokingWindow.IsAuth = auth;
             if (auth)
             {
                 MessageBox.Show("авторизация успешна");
+                EvokingWindow.IsAdmined = admined;
+                EvokingWindow.IsAuth = auth;
+                EvokingWindow.authLogin = log;
                 EvokingWindow.UpdateAuth();
                 this.Close();
-            }
-            else {
+            }else {
                 MessageBox.Show("логин или пароль не найдены");
             }
         }

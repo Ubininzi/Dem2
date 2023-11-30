@@ -11,6 +11,7 @@ namespace WpfApp3
 		public bool IsBasketWindowActive = false;
 		public bool IsAdmined = false;
 		public bool IsAuth = false;
+		public Login? authLogin = null;
 		public Dictionary<int, int> Basket = new();
 		public MainWindow()
 		{
@@ -54,6 +55,7 @@ namespace WpfApp3
 				AuthButton.Content = "Авторизация";
 				IsAdmined = false;
 				IsAuth = false;
+				authLogin = null;
 				UpdateProductsList();
 			}
         }
