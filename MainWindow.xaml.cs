@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Windows;
-using Microsoft.EntityFrameworkCore;
 
 
 namespace WpfApp3
